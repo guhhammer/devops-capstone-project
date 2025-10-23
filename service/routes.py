@@ -165,15 +165,15 @@ def check_content_type(media_type):
         f"Content-Type must be {media_type}",
     )
 
+
 @app.after_request
 def add_security_and_cors_headers(response):
     # CORS header
     response.headers['Access-Control-Allow-Origin'] = '*'
-    
     # Security headers
     response.headers['X-Frame-Options'] = 'SAMEORIGIN'
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['Content-Security-Policy'] = "default-src 'self'; object-src 'none'"
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
-    
     return response
+
